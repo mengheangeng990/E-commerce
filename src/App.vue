@@ -34,6 +34,7 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios';
 import CategoryCard from './components/category.vue';
 import PromotionCard from './components/Promotion.vue';
 import ButtonCard from './components/Button.vue';
@@ -82,6 +83,32 @@ export default {
       ]
 
     };
+  },
+
+  methods: {
+    async fetchCategories() {
+        try {
+            const response = await axios.get('http://localhost:3000/api/categories');
+            this.products = response.data;
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    },
+
+    async fetchPromotions() {
+        try {
+            const response = await axios.get('http://localhost:3000/api/promotions');
+            this.promotions = response.data;
+        } catch (error) {
+            console.error('Error fetching promotions:', error);
+        }
+    }
+},
+  mounted() {
+      // Mounted life cycle - It will be executed every time
+      // this component is loaded
+      this.fetchCategories();
+      this.fetchPromotions();
   }
 };
 
