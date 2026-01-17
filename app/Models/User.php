@@ -59,4 +59,28 @@ class User extends Authenticatable
             'role_id'
         );
     }
+
+    /**
+     * Get the author for this user.
+     */
+    public function author()
+    {
+        return $this->hasOne(Author::class);
+    }
+
+    /**
+     * Get the audience for this user.
+     */
+    public function audience()
+    {
+        return $this->hasOne(Audience::class);
+    }
+
+    /**
+     * Get the comments for this user.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

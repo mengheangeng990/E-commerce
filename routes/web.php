@@ -18,3 +18,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+use App\Http\Controllers\ApiController;
+
+Route::get('/api/articles/sao', [ApiController::class, 'getArticlesOfSao']);
+Route::get('/api/audiences/climate', [ApiController::class, 'getAudiencesOfClimateArticle']);
+Route::get('/api/audiences/sok', [ApiController::class, 'getAudiencesOfSok']);
+Route::get('/api/comments/samnang', [ApiController::class, 'getCommentsOfSamnang']);
+Route::get('/api/comments/all', [ApiController::class, 'getAllCommentsWithTopics']);
